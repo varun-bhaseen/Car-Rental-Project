@@ -1,0 +1,82 @@
+{% extends "layout.html" %} {% block body %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+{% with error = get_flashed_messages(category_filter=["error"]) %} {% if error %}
+<div class="alert alert-danger">
+    {% for message in error%} {{ message }} {% endfor %}
+    <a class="btn btn-primary btn-sm" href="{{ url_for('inventory') }}" role="button">To Inventory</a>
+</div>
+{% endif %} {% endwith %}
+<div class="jumbotron">
+    <div class="container">
+
+        <form
+            action="{{url_for('reservation_vehicle', dealer_id=context[0]['dealer_id'], vehicle_id=context[0]['vehicle_id'])}}"
+            method=post>
+            <h1>{{ context[0]['vehicle_name'] }}</h1>
+            <p> {{ context[0]['vehicle_desc'] }}</p>
+            <p> Location: {{ context[0]['curr_location'] }}</p>
+            <p>Pick up date:
+                <input type="date" id="pickup_date" name="pickup_date">
+                <select id="pickup_time" style="width: 100px !important; min-width: 100px; max-width: 100px;"
+                    name="pickup_time" type="text" class="form-control input-md" required>
+                    <option value='6'>6</option>
+                    <option value='7'>7</option>
+                    <option value='8'>8</option>
+                    <option value='9'>9</option>
+                    <option value='10'>10</option>
+                    <option value='11'>11</option>
+                    <option value='12'>12</option>
+                    <option value='13'>13</option>
+                    <option value='14'>14</option>
+                    <option value='15'>15</option>
+                    <option value='16'>16</option>
+                    <option value='17'>17</option>
+                    <option value='18'>18</option>
+                    <option value='19'>19</option>
+                    <option value='20'>20</option>
+                    <option value='21'>21</option>
+                </select>
+            </p>
+            <p nowrap>Rent Duration (no more than 3 days):</p>
+            Days <select id="days" style="width: 100px !important; min-width: 100px; max-width: 100px;" name="days"
+                type="text" class="form-control input-md" required>
+                <option value='0'>0</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+            </select>
+            Hours<select id="hours" style="width: 100px !important; min-width: 100px; max-width: 100px;" name="hours"
+                type="text" class="form-control input-md" required>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value='5'>5</option>
+                <option value='6'>6</option>
+                <option value='7'>7</option>
+                <option value='8'>8</option>
+                <option value='9'>9</option>
+                <option value='10'>10</option>
+                <option value='11'>11</option>
+                <option value='12'>12</option>
+                <option value='12'>13</option>
+                <option value='14'>14</option>
+                <option value='15'>15</option>
+                <option value='16'> 16</option>
+                <option value='17'> 17</option>
+                <option value='18'>18</option>
+                <option value='19'>19</option>
+                <option value='20'>20</option>
+                <option value='21'>21</option>
+                <option value='22'>22</option>
+                <option value='23'>23</option>
+            </select>
+            </p>
+            <p><input type="submit" class="btn btn-primary btn-lg" value='make reservation'></input></p>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

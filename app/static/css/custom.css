@@ -1,0 +1,80 @@
+.navbar {
+    margin-bottom: 0px;
+    border-radius: 0px !important;
+}
+
+.navbar-default {
+    background-color: royalblue;
+    border-color: royalblue;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: lightgrey;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: lightgrey;
+}
+
+.navbar-default .navbar-toggle {
+    border: none;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #FFF;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFF;
+}
+
+.btn-success {
+    color: royalblue;
+    background-color: #D8D8D8;
+    border-color: #D8D8D8;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open>.dropdown-toggle.btn-success {
+    color: #fff;
+    background-color: #285e8e;
+    border-color: #285e8e;
+    /*set the color you want here*/
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: royalblue;
+    border-color: royalblue;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #2C3E50;
+    border-color: #2C3E50;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+#footer {
+    /*margin-top: 10%;*/
+    height: 70%;
+    background-color: #2C3E50;
+}
+
+.jumbotron {
+    background-color: #FFF;
+}
+
+legend {
+    text-align: center;
+}

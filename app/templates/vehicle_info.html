@@ -1,0 +1,74 @@
+{% extends "layout.html" %} {% block body %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>{{ context[0]['vehicle_name'] }}</h1>
+        <p>Type: {{ context[0]['vehicle_type'] }}</p>
+        <p>
+            Keywords: {% for row in keywords %} {{ row['vehicle_keyword'] }} {% else %} N/A {% endfor %}
+        </p>
+        {% if session.user_logged_in %}
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('reservation', vehicle_id=context[0]['vehicle_id'] ) }}" role="button">reservation</a></p>
+        {% endif %} {% if session.dealer_logged_in %}
+        <a class="btn btn-success btn-lg" href="{{ url_for('add_to_inventory', vehicle_id=context[0]['vehicle_id']) }}" role="button">Add to Inventory</a> {% endif %}
+    </div>
+</div>
+
+<div class="row column text-center">
+    <h2>Similar vehicles</h2>
+    <hr>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        vehicle Id
+                    </th>
+                    <th>
+                        vehicle name
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in ordered_by_sim %}
+                <tr>
+                    <td>
+                        {{ row['vehicle_id'] }}
+                    </td>
+                    <td>
+                        {{ row['vehicle_name'] }}
+                    </td>
+                    
+                    <td>
+                        {% if session.user_logged_in %}
+                        <a class="btn btn-primary btn-sm" href="{{ url_for('reservation',   vehicle_id=row['vehicle_id']) }}" role="button">reservation</a> {% endif %} {% if session.dealer_logged_in %}
+                        <a class="btn btn-success btn-sm" href="{{ url_for('add_to_inventory', vehicle_id=row['vehicle_id']) }}" role="button">Add to Inventory</a> {% endif %}
+                        <a class="btn btn-success btn-sm" href="{{ url_for('vehicle_info', vehicle_id=row['vehicle_id']) }}" role="button">Info</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+{% endblock %}

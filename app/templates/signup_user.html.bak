@@ -1,0 +1,67 @@
+{% extends "layout.html" %} {% block body %}
+
+<br />
+<!-- user Signup-->
+<form class="form-horizontal" action="{{ url_for('add_user') }}" method="post">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>user Signup</legend>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="user_id">Username</label>
+            <div class="col-md-4">
+                <input id="user_id" name="user_id" type="text" placeholder="Username" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="user_name">user Name</label>
+            <div class="col-md-4">
+                <input id="user_name" name="user_name" type="text" placeholder="First Name, Last Name" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="user_type">user Type</label>
+            <div class="col-md-4">
+                <input id="user_type" name="user_type" type="text" placeholder="Student" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="dealer_id">dealer ID</label>
+            <div class="col-md-4">
+                <input id="dealer_id" name="dealer_id" type="text" placeholder="Local dealer" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Password</label>
+            <div class="col-md-4">
+                <input id="password" name="password" type="password" placeholder="" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="submit_user"></label>
+            <div class="col-md-4">
+                <button id="submit_user" name="submit_user" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+
+{% endblock %}

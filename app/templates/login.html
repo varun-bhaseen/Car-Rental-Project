@@ -1,0 +1,71 @@
+{% extends "layout.html" %} {% block body %} {% with messages = get_flashed_messages(with_categories=true) %}
+<!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+{% if messages %} {% for category, message in messages %}
+<div class="alert alert-{{ category }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <!-- <strong>Title</strong> -->{{ message }}
+</div>
+{% endfor %} {% endif %} {% endwith %}
+
+<!-- user Signup-->
+<form class="form-horizontal" action="{{ url_for('user_login') }}" method="post">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Login</legend>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="radios">Login as:</label>
+            <div class="col-md-4">
+                <div class="radio">
+                    <label for="radios-0">
+      <input type="radio" name="radios" id="radios-0" value="user" checked="checked">
+      User
+    </label>
+                </div>
+                <div class="radio">
+                    <label for="radios-1">
+      <input type="radio" name="radios" id="radios-1" value="dealer">
+      Dealer
+    </label>
+                </div>
+                <div class="radio">
+                    <label for="radios-2">
+      <input type="radio" name="radios" id="radios-2" value="admin">
+      Admin
+    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="username">Username</label>
+            <div class="col-md-4">
+                <input id="username" required name="username" type="text" placeholder="Username" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Password</label>
+            <div class="col-md-4">
+                <input id="password" required name="password" type="password" placeholder="Password" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group ">
+            <label class="col-md-4 control-label" for="submit_user"></label>
+            <div class="col-md-4">
+                <button id="submit_user" name="submit_user" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends "layout.html" %} {% block body %} {% if session.user_logged_in %} {% endif %} {% if session.user_logged_in %}
+<div class="row column text-center">
+    <h2>Our Inventory</h2>
+    <hr>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Vehicle Id
+                    </th>
+                    <th>
+                        vehicle Name
+                    </th>
+                    <th>
+                        Current Location
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>
+                        {{ row['vehicle_id'] }}
+                    </td>
+                    <td>
+                        {{ row['vehicle_name'] }}
+                    </td>
+                    <td>
+                        {{ row['curr_location'] }}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="{{ url_for('reservation',  vehicle_id=row['vehicle_id'], curr_location=row['curr_location']) }}" role="button">Reserve</a>
+                        <a class="btn btn-success btn-sm" href="{{ url_for('vehicle_info', vehicle_id=row['vehicle_id']) }}" role="button">Info</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+<div class="row column text-center">
+    <h2>Vehicles available at other dealers</h2>
+    <hr>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        vehicle name
+                    </th>
+                    <th>
+                        other location
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in uarows %}
+                <tr>
+                    <td>
+                        {{ row['vehicle_name'] }}
+                    </td>
+                    <td>
+                        {{ row['curr_location'] }}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="{{ url_for('reservation', vehicle_id=row['vehicle_id'], curr_location=row['curr_location']) }}" role="button">Reserve</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+{% else %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>The Inventory</h1>
+        <p>Please login as a user to view our Inventory</p>
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('signup') }}" role="button">Sign up</a> <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role="button">Login</a></p>
+    </div>
+</div>
+{% endif %} {% endblock %}

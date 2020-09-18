@@ -1,0 +1,33 @@
+{% extends "layout.html" %} {% block body %}
+{% with error = get_flashed_messages(category_filter=["error"]) %} {% if error %}
+<div class="alert alert-danger">
+    {% for message in error%} {{ message }} {% endfor %}
+    
+</div>
+{% endif %} {% endwith %}
+<div class="jumbotron">
+    <div class="container">
+
+
+    <form action="{{ url_for('pay_member') }}" method=post>
+      <div class="row column log-in-form">
+        <p>
+            <label>Membership Fee
+                <input id="member_fee" name="member_fee" value="{{ member_fee }}" type="text"  class="form-control input-md" readonly>
+            </label>
+        </p>
+        <p>
+            <label>Credit Card
+                <input id="credit_card" name="credit_card" type="text"  class="form-control input-md" required
+                oninvalid="this.setCustomValidity('Please provide valid number.')"
+                onchange="this.setCustomValidity('')" maxlength="19" >
+            </label>
+        </p>
+        
+        <p><button id="pay" name="pay" class="btn btn-primary">Pay</button></p>
+      </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

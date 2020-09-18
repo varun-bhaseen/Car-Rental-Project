@@ -1,0 +1,152 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="jumbotron">
+    <div class="container">
+        <form class="form-horizontal" action="{{ url_for('add_vehicle') }}" method="post">
+            <fieldset>
+                <legend>Add vehicle</legend>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_name">vehicle name</label>
+                    <div class="col-md-4">
+                        <input id="vehicle_name" name="vehicle_name" type="text" class="form-control input-md" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_type">brand</label>
+                    <div class="col-md-4">
+                        <select class="form-control" id="brands" name="brands">
+            {% for row in options %}
+            <option value="{{ row['brand_id'] }}">{{ row['brand_name'] }}</option>
+            {% else %}
+            
+            {% endfor %}
+        </select>
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_type">vehicle Type</label>
+                    <div class="col-md-4">
+                        <select id="vehicle_type" name="vehicle_type" type="text" class="form-control input-md" required>
+                            <option>SUV</option>
+                            <option>Truck</option>
+                        	<option>Sedan</option>
+                            <option>Luxury</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_type">Number of Vehicles</label>
+                    <div class="col-md-4">
+                        <input id="number_copies" name="number_copies" type="text " class="form-control input-md " required/>
+                    </div>
+                </div>
+    </div>
+
+
+    <!-- Button -->
+    <div class="form-group ">
+        <label class="col-md-4 control-label " for="add "></label>
+        <div class="col-md-4 ">
+            <button id="add " name="add " class="btn btn-primary ">Add</button>
+        </div>
+    </div>
+
+    </fieldset>
+    </form>
+</div>
+</div>
+
+<div class="row column text-center ">
+    <h2>vehicles</h2>
+    <hr>
+</div>
+<div class="row ">
+    <div class="col-md-2 "></div>
+    <div class="col-md-8 ">
+        {% if error %}
+        <div class="alert alert-danger ">
+            {{ error }}
+        </div>
+        {% endif %} {% with error = get_flashed_messages(category_filter=["error "]) %} {% if error %}
+        <div class="alert alert-danger ">
+            {% for message in error %} {{ message }} {% endfor %}
+        </div>
+        {% endif %} {% endwith %} {% with success = get_flashed_messages(category_filter=["success "]) %} {% if success %}
+        <div class="alert alert-success ">
+            {% for message in success %} {{ message }} {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th>
+                        vehicle ID
+                    </th>
+                    <th>
+                        vehicle name
+                    </th>
+                    <th>
+                        brand name
+                    </th>
+                    <th>
+                        Vehicle Type
+                    </th>
+                    <th>
+                        Number of Vehicles
+                    </th>
+                    <th>
+                        Vehicles Remaining
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>
+                        {{ row['vehicle_id'] }}
+                    </td>
+                    <td>
+                        {{ row['vehicle_name'] }}
+                    </td>
+                    <td>
+                        {{ row['brand_name'] }}
+                    </td>
+                    <td>
+                        {{ row['vehicle_type'] }}
+                    </td>
+                    <td>
+                        {{ row['number_copies'] }}
+                    </td>
+                    <td>
+                        {{ row['copies_remaining'] }}
+                    </td>
+                    <td>
+                        <a class="btn btn-success btn-sm " href="{{ url_for( 'add_to_inventory', vehicle_id=row[ 'vehicle_id']) }} " role="button ">Add to Inventory</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2 "></div>
+</div>
+
+{% endblock %}

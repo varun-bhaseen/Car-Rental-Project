@@ -1,0 +1,12 @@
+{% extends "layout.html" %} {% block body %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container" style="text-align: center;">
+        <h1>GPSV Car Rental Company</h1>
+        <p>The only car rental service you'll ever need</p>
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('signup') }}" role="button">Sign up</a> <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role="button">Login</a></p>
+    </div>
+</div>
+
+{% endblock %}

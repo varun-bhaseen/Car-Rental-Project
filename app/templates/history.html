@@ -1,0 +1,101 @@
+{% extends "layout.html" %} {% block body %}
+<div class="row column text-center">
+    <h2>reservation History</h2>
+    <hr>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        user Id
+                    </th>
+                    <th>
+                        vehicle name
+                    </th>
+                    <th>
+                        vehicle Id
+                    </th>
+                    <th>
+                        vehicle Copy
+                    </th>
+                    <th>
+                        reservationed From
+                    </th>
+                    <th>
+                        Returned To
+                    </th>
+                    <th>
+                        reservationed Date
+                    </th>
+                    <th>
+                        Return Date
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>
+                        {{ row['user_id'] }}
+                    </td>
+                    <td>
+                        {{ row['vehicle_name'] }}
+                    </td>
+                    <td>
+                        {{ row['vehicle_id'] }}
+                    </td>
+                    <td>
+                        {{ row['vehicle_copy'] }}
+                    </td>
+                    <td>
+                        {{ row['reservationed_from'] }}
+                    </td>
+                    <td>
+                        {{ row['returned_to'] }}
+                    </td>
+                    <td>
+                        {{ row['reservation_date'] }}
+                    </td>
+                    <td>
+                        {{ row['return_date'] }}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+{% endblock %}

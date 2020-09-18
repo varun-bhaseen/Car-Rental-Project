@@ -1,0 +1,74 @@
+<html lang="en">
+
+<head>
+    <title>Rent-A-Car</title>
+    <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">-->
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='css/custom.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script src="{{ url_for('static', filename='js/jquery.js') }}">
+    </script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}">
+    </script>
+</head>
+<!-- Static navbar -->
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('index') }}">Rent-A-Car</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right" action="{{ url_for('search_results') }}" method="post">
+                    <div class="form-group">
+                        <input id="search_term" name="search_term" type="text" placeholder="Enter a car name Eg: BMW" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+
+                    {% if session.dealer_logged_in %}
+                    <li><a href=" {{ url_for('brand') }}">Brands</a></li>
+                    <li><a href=" {{ url_for('dealer_lend') }}">Place Order</a></li>
+                    <li><a href=" {{ url_for('history') }}">History</a></li>
+                    <li><a href=" {{ url_for('vehicle') }}">Vehicles</a></li>
+                    <li><a href=" {{ url_for('dealer_home') }}">Dealer Profile</a></li>
+                    <li><a href="{{ url_for('signout') }}">Sign out ({{ session['dealer_id'] }})</a></li>
+                    {% elif session.user_logged_in %}
+                    <li><a href=" {{ url_for('inventory') }}">Inventory</a></li>
+                    <li><a href=" {{ url_for('user_home') }}">User Profile</a></li>
+                    <li><a href="{{ url_for('signout') }}">Sign out ({{ session['user_id'] }} -> {{ session['dealer_id'] }})</a></li>
+                    {% elif session.admin_logged_in %}
+                    <li><a href=" {{ url_for('vehicle') }}">Vehicles</a></li>
+                    <li><a href=" {{ url_for('keywords') }}">Keywords</a></li>
+                    <li><a href="{{ url_for('signout') }}">Sign out</a></li>
+                    <!-- Add members -->
+                    {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('signup') }}">Sign up</a></li>
+
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    {% block body %}{% endblock %}
+
+    <!-- <div id="footer" class="jumbotron">
+        <div class="container">
+        </div>
+    </div> -->
+
+</body>
+
+</html>

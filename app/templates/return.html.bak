@@ -1,0 +1,102 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="jumbotron">
+    <div class="container">
+
+        <!-- user Signup-->
+        <form class="form-horizontal" action="{{ url_for('dreturn') }}" method="post">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Return {{ context[0]['vehicle_name'] }}</legend>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="reservation_id">reservation Id</label>
+                    <div class="col-md-4">
+                        <input id="reservation_id" name="reservation_id" type="text" class="form-control input-md" value="{{ context[0]['reservation_id'] }}" readonly>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_id">vehicle ID</label>
+                    <div class="col-md-4">
+                        <input id="vehicle_id" name="vehicle_id" type="text" class="form-control input-md" value="{{ context[0]['vehicle_id'] }}" readonly>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_copy">vehicle Copy</label>
+                    <div class="col-md-4">
+                        <input id="vehicle_copy" name="vehicle_copy" type="text" class="form-control input-md" value="{{ context[0]['vehicle_copy'] }}" readonly>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_id">Reserved From</label>
+                    <div class="col-md-4">
+                        <input id="reservationed_from" name="reservationed_from" type="text" class="form-control input-md" value="{{ context[0]['dealer_id'] }}" readonly>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_id">Return To</label>
+                    <div class="col-md-4">
+                        <select class="form-control" id="vehicle" name="return_to" required>
+                            {% for row in options %}
+                            <option value="{{ row['dealer_id'] }}">{{ row['dealer_id'] }}</option>
+                            {% else %}
+                            
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_id">condition of the car</label>
+                    <div class="col-md-4">
+                        <input id="return_condition" name="return_condition" type="text" class="form-control input-md" >
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_id">return comments</label>
+                    <div class="col-md-4">
+                        <input id="return_comments" name="return_comments" type="text" class="form-control input-md" >
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_id">Rental Fee</label>
+                    <div class="col-md-4">
+                        <input id="rental_fee" name="rental_fee" type="text" class="form-control input-md" value="{{ rental_fee }}" readonly>
+                </div>
+                </div>
+                {% if late_fee > 0 %}
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_id">Late Fee</label>
+                    <div class="col-md-4">
+                        <input id="late_fee" name="late_fee" type="text" class="form-control input-md" value="{{ late_fee }}" readonly>
+
+                    </div>
+                </div>
+                {% endif %}
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="return"></label>
+                    <div class="col-md-4">
+                        <button id="return" name="return" class="btn btn-primary">Return</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

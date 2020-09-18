@@ -1,0 +1,82 @@
+{% extends "layout.html" %} {% block body %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+
+        <form class="form-horizontal" action="{{ url_for('confirm_lend') }}" method="post">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Return {{ context[0]['vehicle_name'] }}</legend>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_id">vehicle ID</label>
+                    <div class="col-md-4">
+                        <input id="vehicle_id" name="vehicle_id" type="text" class="form-control input-md" value="{{ context[0]['vehicle_id'] }}" readonly>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_copy">vehicle Copy</label>
+                    <div class="col-md-4">
+                        <input id="vehicle_copy" name="vehicle_copy" type="text" class="form-control input-md" value="{{ context[0]['vehicle_copy'] }}" readonly>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="vehicle_desc">vehicle Description</label>
+                    <div class="col-md-4">
+                        <input id="vehicle_desc" name="vehicle_desc" type="text" class="form-control input-md" value="{{ context[0]['vehicle_desc'] }}" readonly>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="from_dealer">Ordered From</label>
+                    <div class="col-md-4">
+                        <input id="from_dealer" name="from_dealer" type="text" class="form-control input-md" value="{{ context[0]['dealer_id'] }}" readonly>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="to_dealer">Deliver To</label>
+                    <div class="col-md-4">
+                        <input id="to_dealer" name="to_dealer" " type="text " class="form-control input-md " value="{{ context[0][ 'deliver_to'] }} " readonly>
+            
+        </div>
+        </div>
+
+        <div class="form-group ">
+        <label class="col-md-4 control-label " for="order_date">Order Date</label>  
+        <div class="col-md-4 ">
+        <input id="order_date" name="order_date" type="text" class="form-control input-md" value="{{ context[0][ 'order_date'] }}" readonly>
+            
+        </div>
+        </div>
+        
+        <div class="form-group ">
+        <label class="col-md-4 control-label " for="delivery_date">Delivery Date</label>  
+        <div class="col-md-4 ">
+        <input id="delivery_date" name="delivery_date" type="text" class="form-control input-md" value="{{ context[0][ 'delivery_date'] }}" readonly>
+            
+        </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group ">
+        <label class="col-md-4 control-label " for="return "></label>
+        <div class="col-md-4 ">
+            <button id="return " name="return " class="btn btn-primary ">Confirm</button>
+        </div>
+        </div>
+
+        </fieldset>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

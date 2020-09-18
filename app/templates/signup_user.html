@@ -1,0 +1,74 @@
+{% extends "layout.html" %} {% block body %}
+
+<br />
+<form class="form-horizontal" action="{{ url_for('add_user') }}" method="post">
+    <fieldset>
+        <legend>User Signup</legend>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+        {% if messages %} {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> {{ message }}
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="user_id">Username</label>
+            <div class="col-md-4">
+                <input id="user_id" name="user_id" type="text" placeholder="johndoe" class="form-control input-md" required>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="user_name">Full Name</label>
+            <div class="col-md-4">
+                <input id="user_name" name="user_name" type="text" placeholder="First Name, Last Name" class="form-control input-md" required>
+
+            </div>
+        </div>
+
+
+        <!-- Text input-->
+        <!-- <div class="form-group">
+            <label class="col-md-4 control-label" for="dealer_id">Dealer ID</label>
+            <div class="col-md-4">
+                <input id="dealer_id" name="dealer_id" type="text" placeholder="Local dealer" class="form-control input-md">
+
+            </div>
+        </div> -->
+
+        <!-- Password input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Password</label>
+            <div class="col-md-4">
+                <input id="password" name="password" type="password" placeholder="" class="form-control input-md" required="">
+            </div>
+        </div>
+
+        <!-- Driver License-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="driver_license">Driver License</label>
+            <div class="col-md-4">
+                <input id="driver_license" name="driver_license" type="text" placeholder="" class="form-control input-md" required="">
+            </div>
+        </div>
+
+        <!-- <div class="form-group">
+            <label class="col-md-4 control-label" for="driver_license">Credit Card Number</label>
+            <div class="col-md-4">
+                <input id="credit_card" name="credit_card" type="text" placeholder="" class="form-control input-md" required="">
+            </div>
+        </div> -->
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="submit_user"></label>
+            <div class="col-md-4">
+                <button id="submit_user" name="submit_user" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="jumbotron">
+    <div class="container">
+
+        <!-- user Signup-->
+        <form class="form-horizontal" action="{{ url_for('add_brand') }}" method="post">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Add brand</legend>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="brand_name">brand Name</label>
+                    <div class="col-md-4">
+                        <input id="brand_name" name="brand_name" type="text" class="form-control input-md">
+
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="add"></label>
+                    <div class="col-md-4">
+                        <button id="add" name="add" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div class="row column text-center">
+    <h2>brands</h2>
+    <hr>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        brand ID
+                    </th>
+                    <th>
+                        brand Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>
+                        {{ row['brand_id'] }}
+                    </td>
+                    <td>
+                        {{ row['brand_name'] }}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+{% endblock %}

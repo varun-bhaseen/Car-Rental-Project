@@ -1,0 +1,72 @@
+{% extends "layout.html" %} {% block body %} {% if session.user_logged_in %} {% endif %} {% if session.user_logged_in or session.dealer_logged_in %}
+<div class="row column text-center">
+    <h2>Search Results for term ( {{ searchterm }} )</h2>
+    <hr>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        vehicle name
+                    </th>
+                    <th>
+                        brand Name
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>
+                        {{ row['vehicle_name'] }}
+                    </td>
+                    <td>
+                        {{ row['brand_name'] }}
+                    </td>
+                    <td>
+                        {% if session.user_logged_in %}
+                        <a class="btn btn-primary btn-sm" href="{{ url_for('reservation',   vehicle_id=row['vehicle_id']) }}" role="button">reservation</a> {% endif %} {% if session.dealer_logged_in %}
+                        <a class="btn btn-success btn-sm" href="{{ url_for('add_to_inventory', vehicle_id=row['vehicle_id']) }}" role="button">Add to Inventory</a> {% endif %}
+                        <a class="btn btn-success btn-sm" href="{{ url_for('vehicle_info', vehicle_id=row['vehicle_id']) }}" role="button">Info</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+
+{% else %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>Search Results</h1>
+        <p>Please login as a user or dealer </p>
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('signup') }}" role="button">Sign up</a> <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role="button">Login</a></p>
+    </div>
+</div>
+{% endif %} {% endblock %}

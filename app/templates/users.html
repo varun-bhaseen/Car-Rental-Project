@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block topcontent %}
+{% if session.logged_in %}
+  <ul class=entries>
+  {% for entry in entries %}
+    <li>{{ entry.email }} - {{ entry.password }}</li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "layout.html" %} {% block body %}
+
+<br />
+<!-- dealer signup -->
+<form class="form-horizontal" action="{{ url_for('add_dealer') }}" method="post">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Dealer Sign up</legend>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+        {% if messages %} {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> {{ message }}
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="dealer_name">dealer Name</label>
+            <div class="col-md-4">
+                <input id="dealer_name" name="dealer_name" type="text" placeholder="Bloomfield dealer" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="dealer_state">State</label>
+            <div class="col-md-4">
+                <input id="dealer_state" name="dealer_state" type="text" placeholder="New Jersey" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="dealer_city">City</label>
+            <div class="col-md-4">
+                <input id="dealer_city" required name="dealer_city" type="text" placeholder="Newark" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="dealer_zip_code">Zipcode</label>
+            <div class="col-md-4">
+                <input id="dealer_zip_code" required name="dealer_zip_code" type="text" placeholder="New Jersey" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="dealer_id">Username</label>
+            <div class="col-md-4">
+                <input id="dealer_id" required name="dealer_id" type="text" placeholder="Username" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Password</label>
+            <div class="col-md-4">
+                <input id="password" required name="password" type="password" placeholder="" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="submit_user"></label>
+            <div class="col-md-4">
+                <button id="submit_user" name="submit_user" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+
+{% endblock %}

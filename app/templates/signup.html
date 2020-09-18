@@ -1,0 +1,11 @@
+{% extends "layout.html" %} {% block body %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>Sign up</h1>
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('signup_dealer') }}" role="button">Dealer</a> <a class="btn btn-primary btn-lg" href="{{ url_for('signup_user') }}" role="button">User</a></p>
+    </div>
+</div>
+
+{% endblock %}

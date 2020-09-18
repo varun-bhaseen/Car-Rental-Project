@@ -1,0 +1,67 @@
+{% extends "layout.html" %} {% block body %}
+<div class="row column text-center">
+    <h2>reservation History</h2>
+    <hr>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        User Id
+                    </th>
+                    <th>
+                        User name
+                    </th>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>
+                        {{ row['user_id'] }}
+                    </td>
+                    <td>
+                        {{ row['user_name'] }}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="{{ url_for('modify_user',  user_id=row['user_id']) }}" role="button">Remove Membership</a>
+                    </td>
+                </tr>
+
+                {% else %}
+                <tr>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                    <td>
+                        No Data
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% endblock %}
